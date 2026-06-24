@@ -1,6 +1,6 @@
 # Agents
 
-Shared agent instructions and skills for opencode and Claude Code.
+Shared agent instructions and skills for opencode, Claude Code, and Pi.
 
 ## Usage
 
