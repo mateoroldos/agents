@@ -37,49 +37,51 @@ Repo Librarian metadata lives at:
 
 ## Core commands
 
+Scripts live in this skill's `scripts/` directory. `~/agents/skills/` is the canonical path — Claude Code, opencode, and Pi all symlink their skills directory to it, so this resolves under every tool.
+
 Resolve, clone, refresh, and print the local checkout path:
 
 ```bash
-bash .pi/skills/repo-librarian/scripts/checkout.sh <repo> --path-only
+bash ~/agents/skills/repo-librarian/scripts/checkout.sh <repo> --path-only
 ```
 
 Examples:
 
 ```bash
-bash .pi/skills/repo-librarian/scripts/checkout.sh mitsuhiko/minijinja --path-only
-bash .pi/skills/repo-librarian/scripts/checkout.sh github.com/mitsuhiko/minijinja --path-only
-bash .pi/skills/repo-librarian/scripts/checkout.sh https://github.com/mitsuhiko/minijinja --path-only
+bash ~/agents/skills/repo-librarian/scripts/checkout.sh mitsuhiko/minijinja --path-only
+bash ~/agents/skills/repo-librarian/scripts/checkout.sh github.com/mitsuhiko/minijinja --path-only
+bash ~/agents/skills/repo-librarian/scripts/checkout.sh https://github.com/mitsuhiko/minijinja --path-only
 ```
 
 List cached repos:
 
 ```bash
-bash .pi/skills/repo-librarian/scripts/list.sh
+bash ~/agents/skills/repo-librarian/scripts/list.sh
 ```
 
 Search one repo:
 
 ```bash
-bash .pi/skills/repo-librarian/scripts/search.sh vercel/next.js "defineConfig"
+bash ~/agents/skills/repo-librarian/scripts/search.sh vercel/next.js "defineConfig"
 ```
 
 Search all cached repos:
 
 ```bash
-bash .pi/skills/repo-librarian/scripts/search-all.sh "defineConfig"
+bash ~/agents/skills/repo-librarian/scripts/search-all.sh "defineConfig"
 ```
 
 Analyze one repo and create/update a reusable note:
 
 ```bash
-bash .pi/skills/repo-librarian/scripts/analyze.sh vercel/next.js
+bash ~/agents/skills/repo-librarian/scripts/analyze.sh vercel/next.js
 ```
 
 Tag a repo:
 
 ```bash
-bash .pi/skills/repo-librarian/scripts/tags.sh add vercel/next.js react framework typescript
-bash .pi/skills/repo-librarian/scripts/tags.sh list vercel/next.js
+bash ~/agents/skills/repo-librarian/scripts/tags.sh add vercel/next.js react framework typescript
+bash ~/agents/skills/repo-librarian/scripts/tags.sh list vercel/next.js
 ```
 
 ## Recommended workflow
