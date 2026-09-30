@@ -51,24 +51,9 @@ The family is what makes a skill wrong:
 
 A skill mixing two families rots unevenly — keep them apart.
 
-| Category | Skill | Family | |
-| --- | --- | --- | --- |
-| product | `shape-feature` | Technique | Shape uncertain features before implementation (user-invoked) |
-| design | `design-engineering` | Standard | UI polish, component design, animation decisions |
-| design | `show-me` | Standard | Explain flows, structure, and changes with compact visual artifacts |
-| engineering | `type-driven-development` | Technique | Shape TypeScript from domain types through modules and proof |
-| stack | `effect-patterns` | Knowledge | Version-aware Effect application architecture and patterns |
-| tools | `jj-agent-workflow` | Technique | Isolate each mutating agent turn as a reviewable, discardable jj change |
-| tools | `repo-librarian` | Knowledge | Local reference library of remote git repositories |
-| tools | `plannotator-annotate` | Technique | Annotate a file, URL, or folder in Plannotator (user-invoked) |
-| tools | `plannotator-last` | Technique | Annotate the last assistant message in Plannotator (user-invoked) |
-| tools | `plannotator-review` | Technique | Review the worktree or a PR in Plannotator (user-invoked) |
-| meta | `writing-great-skills` | Standard | The bar every skill here is held to (user-invoked) |
-| vendor | `effect-ts` | — | Official Effect repository setup |
-| vendor | `agent-browser` | — | Browser automation via the `agent-browser` CLI |
-
-`agents-doctor.fish` fails when a skill sits outside a known category, lacks a family, is missing from
-this table, or is vendored without a lock entry.
+The directory tree and each `SKILL.md` frontmatter are the catalog; `ls skills/* vendor/skills` shows it.
+`agents-doctor.fish` fails when a skill sits outside a known category, lacks a family, or is vendored without
+a lock entry.
 
 Attribution for skills adapted from other developers: [CREDITS.md](CREDITS.md).
 

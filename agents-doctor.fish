@@ -121,9 +121,6 @@ function check_skill --argument-names skill kind
         if not contains -- "$family" $families
             fail "$dir_name: metadata.family must be one of: $families"
         end
-        if not string match -q -- "*`$name`*" (string collect < "$repo/README.md")
-            fail "$dir_name: not listed in README.md"
-        end
     else if not string match -q -- "*\"$name\":*" (string collect < "$repo/vendor/skills-lock.json")
         fail "$dir_name: vendored skill missing from vendor/skills-lock.json; install it with the skills CLI from vendor/"
     end
