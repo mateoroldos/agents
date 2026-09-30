@@ -7,6 +7,8 @@ The pull request body. It answers what a reviewer needs in the order they need i
 
 <One to three lines: the problem and the behavior now. Link the plan if there is one.>
 
+Landing <n> of <m> · ask | show
+
 ## Map
 
 In order; ▸ read closely, · skim.
@@ -31,4 +33,4 @@ In order; ▸ read closely, · skim.
 
 Mark ▸ on types and signatures, stakes lines (migrations, access policy, anything irreversible), and test names with their assertions. For UI, show a screenshot instead of asking for markup to be read.
 
-A stack over about 400 changed lines is a planning failure. Split it into more pull requests before writing the packet.
+A landing over about 400 changed lines is a planning failure. Split it in the plan before writing the packet.

@@ -28,10 +28,16 @@ The reproduction, then symptom → cause → root, each with its evidence.
 - <decision>: <choice> (<why>)
 - Open: <question that blocks a slice>
 
-## Slices
+## Landings
+
+### 1. <what main gains> · <technique> · ask | show
 
 - [ ] `<change subject>`: <the behavior it adds>
   - Proof: types | test `<name>` (<level>) | app: <what to check> | review: <why that is enough>
+
+PR: <URL, once opened>
+
+### 2. <what main gains> · keystone · ask
 ```
 
 A test not named in a slice's proof lands only with a reason in the review packet.

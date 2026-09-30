@@ -11,7 +11,7 @@ Every line the human reviews must be there because the change needs it. Review o
 
 ## 1. Read the whole diff
 
-Read every hunk of `jj diff --from 'trunk()' --to @`, or `git diff $(git merge-base HEAD <base>)` without jj.
+The base is trunk, or the top of the unmerged landing below this one. Read every hunk of `jj diff --from <base> --to @`, or `git diff $(git merge-base HEAD <base>)` without jj.
 
 Done when every changed file has been read, not only the ones you remember touching.
 
@@ -44,7 +44,7 @@ Done when every landed test passes the gate.
 
 ## 5. Get a fresh review
 
-A reviewer who didn't write the code sees what the author is blind to. Prefer a different model: run `codex review --base <trunk-branch>` when Codex is installed; with jj, run it while `@` is empty so git's HEAD is the top of the stack. Otherwise give a fresh subagent only the diff, the intent (the plan or the change descriptions), and the project's AGENTS.md, and ask it for defects, not style.
+A reviewer who didn't write the code sees what the author is blind to. Prefer a different model: run `codex review --base <base-branch>` when Codex is installed; with jj, run it while `@` is empty so git's HEAD is the top of the stack. Otherwise give a fresh subagent only the diff, the intent (the plan or the change descriptions), and the project's AGENTS.md, and ask it for defects, not style.
 
 Fix each finding in the change that owns it, or answer it with a reason.
 
