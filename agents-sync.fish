@@ -4,8 +4,8 @@ set script_dir (dirname (status --current-filename))
 set repo (realpath "$script_dir")
 set adapters "$repo/adapters"/*.fish
 
-if not test -e "$repo/AGENTS.md"
-    echo "missing AGENTS.md at $repo/AGENTS.md" >&2
+if not test -e "$repo/AGENTS.global.md"
+    echo "missing AGENTS.global.md at $repo/AGENTS.global.md" >&2
     exit 1
 end
 
@@ -14,10 +14,25 @@ if not test -d "$repo/skills"
     exit 1
 end
 
+# Links a source into place, refusing to replace anything that is not already a symlink.
+function link_into_place --argument-names owner src dest
+    mkdir -p (dirname "$dest")
+
+    if test -e "$dest"; and not test -L "$dest"
+        echo "$owner: refusing to replace non-symlink: $dest" >&2
+        return 1
+    end
+
+    ln -sfn "$src" "$dest"
+    echo "$owner: linked $dest -> $src"
+end
+
+set skills_dirs
+
 for adapter in $adapters
     set -e adapter_name
     set -e adapter_links
-    set -e adapter_generated_files
+    set -e adapter_skills_dir
 
     source "$adapter"
 
@@ -28,24 +43,36 @@ for adapter in $adapters
 
     for link in $adapter_links
         set parts (string split -m 1 : "$link")
-        set src $parts[1]
-        set dest $parts[2]
-
-        if not test -e "$src"
-            echo "$adapter_name: source does not exist: $src" >&2
+        if not test -e "$parts[1]"
+            echo "$adapter_name: source does not exist: $parts[1]" >&2
             exit 1
         end
+        link_into_place $adapter_name $parts[1] $parts[2]; or exit 1
+    end
 
-        mkdir -p (dirname "$dest")
+    if set -q adapter_skills_dir; and not contains -- "$adapter_skills_dir" $skills_dirs
+        set skills_dirs $skills_dirs "$adapter_skills_dir"
+    end
+end
 
-        if test -e "$dest"; or test -L "$dest"
-            if not test -L "$dest"
-                echo "$adapter_name: refusing to replace non-symlink: $dest" >&2
-                exit 1
-            end
+# Each skills dir is a real directory owned by its harness, holding one link per repo skill,
+# so nothing a harness writes there reaches the repo.
+for dir in $skills_dirs
+    if test -L "$dir"
+        rm "$dir"
+        echo "skills: replaced directory link $dir"
+    end
+    mkdir -p "$dir"
+
+    for skill_file in "$repo/skills"/*/SKILL.md
+        set skill (dirname "$skill_file")
+        link_into_place skills $skill "$dir/"(basename "$skill"); or exit 1
+    end
+
+    for entry in "$dir"/*
+        if test -L "$entry"; and string match -q -- "$repo/skills/*" (readlink "$entry"); and not test -e "$entry"
+            rm "$entry"
+            echo "skills: removed stale link $entry"
         end
-
-        ln -sfn "$src" "$dest"
-        echo "$adapter_name: linked $dest -> $src"
     end
 end

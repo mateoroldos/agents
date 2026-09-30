@@ -37,7 +37,7 @@ Repo Librarian metadata lives at:
 
 ## Core commands
 
-Scripts live in this skill's `scripts/` directory. `~/agents/skills/` is the canonical path — Claude Code, opencode, and Pi all symlink their skills directory to it, so this resolves under every tool.
+Scripts live in this skill's `scripts/` directory. `~/agents/skills/` is the canonical path — every harness links this skill to it, so this resolves under every tool.
 
 Resolve, clone, refresh, and print the local checkout path:
 

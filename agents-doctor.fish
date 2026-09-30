@@ -10,8 +10,62 @@ function fail
     set -g failed 1
 end
 
-if not test -e "$repo/AGENTS.md"
-    fail "missing AGENTS.md"
+for file in AGENTS.global.md AGENTS.md
+    if not test -e "$repo/$file"
+        fail "missing $file"
+    end
+end
+
+# Harnesses walk up parent directories, so a file in $HOME loads on top of each global file.
+for stray in "$HOME/AGENTS.md" "$HOME/CLAUDE.md"
+    if test -e "$stray"; or test -L "$stray"
+        fail "$stray duplicates the global instructions in every project under \$HOME; remove it"
+    end
+end
+
+set skills_dirs
+
+for adapter in "$repo/adapters"/*.fish
+    set -e adapter_name
+    set -e adapter_links
+    set -e adapter_skills_dir
+    source "$adapter"
+
+    for link in $adapter_links
+        set parts (string split -m 1 : "$link")
+        set target (readlink "$parts[2]")
+        if test "$target" != "$parts[1]"
+            fail "$adapter_name: $parts[2] is not linked to $parts[1]; run agents-sync.fish"
+        end
+    end
+
+    if set -q adapter_skills_dir; and not contains -- "$adapter_skills_dir" $skills_dirs
+        set skills_dirs $skills_dirs "$adapter_skills_dir"
+    end
+end
+
+# Each harness skills dir must be a real directory holding exactly one link per repo skill.
+for dir in $skills_dirs
+    if test -L "$dir"; or not test -d "$dir"
+        fail "$dir must be a real directory; run agents-sync.fish"
+        continue
+    end
+
+    for skill_file in "$repo/skills"/*/SKILL.md
+        set skill (dirname "$skill_file")
+        set target (readlink "$dir/"(basename "$skill"))
+        if test "$target" != "$skill"
+            fail "$dir/"(basename "$skill")" is not linked to $skill; run agents-sync.fish"
+        end
+    end
+
+    for entry in "$dir"/*
+        if not test -L "$entry"
+            fail "$entry is not a link to this repo; move it into skills/ or remove it"
+        else if not test -e "$entry"
+            fail "$entry is a broken link; run agents-sync.fish"
+        end
+    end
 end
 
 if not test -d "$repo/skills"

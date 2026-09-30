@@ -1,10 +1,17 @@
 # Agents
 
-Shared agent instructions and skills for Claude Code, opencode, and Pi.
+Shared agent instructions and skills for Claude Code, Codex, opencode, and Pi.
 
 ## Usage
 
-Run the sync script to link `AGENTS.md` and `skills/` into each supported tool:
+Run the sync script to link `AGENTS.global.md` and each skill into every supported tool. `AGENTS.md` holds instructions for working in this repo.
+
+| Harness | Instructions | Skills |
+| --- | --- | --- |
+| Claude Code | `~/.claude/CLAUDE.md` | `~/.claude/skills/<name>` |
+| Codex, opencode, Pi | their own global `AGENTS.md` | `~/.agents/skills/<name>` |
+
+Skills dirs hold one link per skill, so anything a harness writes there stays out of this repo.
 
 ```fish
 ./agents-sync.fish
