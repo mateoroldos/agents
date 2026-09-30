@@ -1,6 +1,6 @@
 # Designing
 
-Use this branch when the requested result is a design proposal, technical plan, or implementation handoff rather than code. The working sequence in [`../SKILL.md`](../SKILL.md) still governs the reasoning; this file defines the review artifact.
+Use this branch when the requested result is a design proposal, technical plan, or implementation handoff rather than code. The rules in [`../SKILL.md`](../SKILL.md) judge the design; this file defines the artifact.
 
 Do not implement unless the user also asked for implementation. Inspect the codebase instead of asking questions it can answer. Keep unresolved product or architectural decisions explicit rather than inventing them.
 

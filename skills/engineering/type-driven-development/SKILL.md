@@ -1,55 +1,52 @@
 ---
 name: type-driven-development
-description: Type-driven TypeScript development. Use when modeling domain values, states, or failures; writing technical designs; defining modules, interfaces, or seams; choosing tests; making reliability decisions; or when another skill needs the shared program-design model.
+description: How we judge TypeScript program design, from types first to tests at the right seam. Use when modeling domain values, states, or failures; designing modules, interfaces, or seams; writing, choosing, or reviewing tests; making reliability decisions; or when another skill needs the program-design model.
 metadata:
-  family: workflow
+  family: principle
 ---
 
 # Type-Driven Development
 
-Use types to expose ambiguity early, preserve what parsing proves, make dependencies and failures visible, and give modules honest interfaces.
+Types carry what the program knows; tests prove only what types cannot. Judge every design and every diff by these rules.
 
-## Working sequence
+## Model first
 
-### 1. Inspect
+Write inputs, outputs, domain values, states, failures, and dependencies as types before the control flow. Make illegal states unrepresentable, and parse untrusted values into the model at the edge.
 
-Read the relevant implementation, tests, and local conventions before introducing a pattern, dependency, interface, or module.
+- **Why:** the compiler checks a type on every build; a comment or caller discipline is checked by no one.
+- **Smell:** bags of optional fields, booleans that encode a state, `as` outside a parser, failures that exist only in prose.
 
-**Complete when:** the affected entrypoints, caller-visible behavior, ownership, existing tests, reachable runtime constraints, and project validation commands have been located.
+## Trace it
 
-### 2. Model
+Every changed behavior has a call stack from entrypoint to result, with parsing, authorization, transactions, retries, cancellation, and external calls on it where reachable.
 
-Write the important inputs, outputs, domain values, states, expected failures, and dependencies before the control flow. Make illegal states unrepresentable where practical and parse untrusted values into the model at the edge.
+- **Why:** a dependency or failure that appears by magic is where bugs hide.
+- **Smell:** you cannot say who calls it or what happens when it fails.
 
-**Complete when:** the signatures describe valid states and reachable failures without relying on comments or caller discipline.
+## One owner
 
-### 3. Trace
+Each invariant, policy decision, effect sequence, and technology translation has one home. Dependencies point toward domain meaning.
 
-Trace each changed caller-visible behavior from entrypoint to result and every side effect. Mark parsing, authorization, transactions, retries, cancellation, and external crossings when reachable.
+- **Why:** two homes drift apart.
+- **Smell:** the same check in two places; domain code importing a framework or provider.
 
-**Complete when:** every changed behavior has an end-to-end call stack and no dependency or failure appears by magic.
+## Deletion test
 
-### 4. Assign
+A module, seam, option, or mode stays only if deleting it would spread knowledge or complexity into its callers.
 
-Give each invariant, policy decision, effect sequence, and technology translation one owner. Put interfaces at the smallest real seams and keep dependencies pointed toward domain meaning.
+- **Why:** each concept is read far more often than it is written.
+- **Smell:** pass-through modules, one-caller wrappers, an interface with one implementation and no test seam, an option no caller passes.
 
-**Complete when:** every changed responsibility has one reason to change and one discoverable home.
+## Prove what types cannot
 
-### 5. Simplify
+Prove each behavior by the cheapest means that is enough: the types, an existing test, the running app, or a new test through the interfaces callers use, at the strongest boundary that exercises it. Each contract has one primary test, variants go in one table, and each name states the behavior it pins, such as `rejects an invitation accepted by another user`. The `audit-tests` skill decides whether a new test earns its place.
 
-Remove speculative seams, pass-through modules, duplicate representations, modes, and options. Prefer one clear flow and the smallest interface that hides the real complexity.
-
-**Complete when:** every new concept survives the deletion test: removing it would spread knowledge or complexity into callers.
-
-### 6. Prove
-
-Test observable behavior through the same interfaces callers use. Choose the highest-confidence affordable seam and control time, concurrency, dependencies, and data deterministically.
-
-**Complete when:** each changed behavior, invariant, and expected failure has an observable proof at a trustworthy seam; the smallest applicable typecheck and behavioral checks pass, or every failure and untested claim is reported.
+- **Why:** a landed test is code to maintain, and it pays only by catching a regression nothing else catches.
+- **Smell:** a test that runs code without checking the answer, a test of what the types guarantee, one contract tested at several layers, a test that breaks when a refactor preserves behavior.
 
 ## Decision order
 
-When concerns conflict:
+When rules conflict:
 
 1. Preserve correctness, safety, and debuggability.
 2. Preserve the behavior and constraints the change is not meant to alter.
@@ -58,9 +55,9 @@ When concerns conflict:
 5. Contain incompatible legacy patterns at the nearest seam.
 6. Leave unrelated code unchanged.
 
-## Chooser
+## References
 
-Read only the references reached by the task:
+Read every reference the task reaches before editing:
 
 - Design proposals, technical plans, or implementation handoffs: [`references/DESIGN.md`](references/DESIGN.md).
 - Domain values, parsing, brands, states, optionality, or failures: [`references/MODELING.md`](references/MODELING.md).
@@ -69,4 +66,4 @@ Read only the references reached by the task:
 - Inference, strictness, casts, immutability, imports, exports, or documentation: [`references/TYPESCRIPT.md`](references/TYPESCRIPT.md).
 - Resources, cancellation, transactions, retries, idempotency, configuration, secrets, or observability: [`references/RELIABILITY.md`](references/RELIABILITY.md).
 
-Read every matching branch before editing. Framework-specific skills may refine the realization, but not erase the model.
+Framework skills may refine how a rule is realized, but not overrule it.

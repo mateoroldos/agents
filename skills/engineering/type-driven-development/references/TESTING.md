@@ -46,7 +46,7 @@ When types are part of a public contract, test accepted and rejected usage with 
 
 Control clocks, randomness, identifiers, dependencies, and synchronization. Wait for explicit readiness or observed events rather than elapsed wall time. A sleep is not proof that concurrent work finished.
 
-Regression tests first reproduce the failure. Refactors preserve passing behavior before and after the change.
+A bug's regression test fails on the code before the fix, for the reported reason. Refactors keep the same tests passing before and after.
 
 ## Use properties where laws matter
 
