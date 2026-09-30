@@ -27,6 +27,7 @@ Done when they pass with no new warnings, or each failure is reported.
 | --- | --- |
 | Dead code: an unused symbol, parameter, import, or export; an unreachable branch; commented-out code; debug output or temporary instrumentation | Delete |
 | A comment that narrates the code or the edit instead of carrying information, as the `type-driven-development` skill defines it | Delete |
+| A doc or skill line that narrates the change, copies what the code says, or reads as slop, as the `write-docs` skill defines it | Delete |
 | A module, wrapper, option, or seam that fails the deletion test of the `type-driven-development` skill | Inline or delete |
 | A change the task did not need: a drive-by refactor, formatting churn, a new dependency, a speculative option | Revert it, or move it to its own change and report it |
 | A second representation of the same thing | Keep one |

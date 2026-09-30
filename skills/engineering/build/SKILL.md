@@ -64,7 +64,7 @@ Done when the slice's proof passes and its change holds only that slice.
 
 Between gates, record each assumption for the review packet instead of asking.
 
-The last change of the pull request that lands the final slice deletes the plan and moves what stays true into the project's docs.
+The last change of the pull request that lands the final slice deletes the plan and moves what stays true into the project's docs, by the `write-docs` skill.
 
 ## 6. Review
 
