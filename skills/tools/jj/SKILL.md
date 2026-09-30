@@ -15,7 +15,7 @@ The working copy is a change (`@`) that every jj command snapshots. Refer to cha
 
 ## Start a change
 
-Write the description before the code. The subject states the behavior the change will have, in the style of `jj log -r '::trunk()' -n 10`.
+Match the subject style of `jj log -r '::trunk()' -n 10`.
 
 | `@` is | Command |
 | --- | --- |

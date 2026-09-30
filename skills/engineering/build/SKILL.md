@@ -30,20 +30,26 @@ Done when the track is announced.
 | --- | --- | --- |
 | small feature | Read the nearest existing example of the same kind | The change's subject and its proof |
 | small fix | Reproduce the failure | The failure, happening on demand |
-| big feature | The `shape-feature` skill | `plans/<name>.md` |
-| big fix | The `diagnose` skill | `plans/<name>.md` |
+| big feature | The `shape-feature` skill | The plan's Contract |
+| big fix | The `diagnose` skill | The plan's Diagnosis |
 
 Plans follow [`references/plan.md`](references/plan.md).
 
 Done when the result in the table exists.
 
-## 3. Gate 1: the plan (big tracks)
+## 3. Design (big tracks)
+
+Write the plan's Shape and Slices: the types and call stacks, judged by the `type-driven-development` skill, and each slice's proof, chosen with the `audit-tests` skill.
+
+Done when every slice has a behavior and a proof, and every decision it needs is made or listed as open.
+
+## 4. Gate 1: the plan (big tracks)
 
 Stop and present the plan: its slices and their proof, the key types, the decisions, and the open questions. Write no product code before the user approves it.
 
 Done when the user has approved the plan.
 
-## 4. Slices
+## 5. Slices
 
 For each slice, in order:
 
@@ -60,13 +66,13 @@ Between gates, record each assumption for the review packet instead of asking.
 
 The last change of the pull request that lands the final slice deletes the plan and moves what stays true into the project's docs.
 
-## 5. Review
+## 6. Review
 
 Run the `review-diff` skill over the whole stack.
 
 Done when its deliverable exists.
 
-## 6. Gate 2: the stack
+## 7. Gate 2: the stack
 
 Write the review packet from [`references/pr.md`](references/pr.md) and stop. Push and open the pull request only when the user says so (the `jj` skill's landing). Answer each line comment, from review or the `plannotator-review` skill, with a fix in the change it concerns or a reason.
 
@@ -82,4 +88,4 @@ Done when the packet is presented or, once approved, the pull request URL is rep
 
 ## Unattended runs
 
-Only when the user grants one for an approved plan and the project has a verify skill. Run every slice through step 5 without stopping, then push the bookmark and open the pull request at gate 2, but never merge. Stop instead when a stakes decision is missing from the plan, when evidence fails and you can't fix it, or on a conflict.
+Only when the user grants one for an approved plan and the project has a verify skill. Run every slice through step 6 without stopping, then push the bookmark and open the pull request at gate 2, but never merge. Stop instead when a stakes decision is missing from the plan, when a proof fails and you can't fix it, or on a conflict.

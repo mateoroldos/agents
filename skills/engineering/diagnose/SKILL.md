@@ -33,8 +33,8 @@ Ask why the cause was possible: a missing type, an unparsed boundary, shared sta
 
 Done when you can state symptom → cause → root, each with its evidence.
 
-## 5. Plan the fix
+## 5. Write the diagnosis
 
-Write `plans/<name>.md` in the plan format of the `build` skill. When the bug passes the gate of the `audit-tests` skill for a regression test, the fix's slice carries one, at the owner boundary, that fails on the code before the fix for this cause.
+Write the Diagnosis section of `plans/<name>.md`, in the plan format of the `build` skill: the reproduction, then symptom → cause → root, each with its evidence.
 
-Done when the plan's diagnosis and slices are ready for the user's approval.
+Done when the section holds all four, and no product code has changed.
