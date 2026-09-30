@@ -36,7 +36,7 @@ List files only when their ownership or change is understood. Do not invent a fi
 
 ## Define proof
 
-Apply [`TESTING.md`](TESTING.md). Name the observable proof for each changed behavior, invariant, expected failure, and public type contract.
+Choose it with the `audit-tests` skill. Name the observable proof for each changed behavior, invariant, expected failure, and public type contract.
 
 ## Output
 

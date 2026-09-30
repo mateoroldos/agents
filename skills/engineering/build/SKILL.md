@@ -9,7 +9,7 @@ metadata:
 
 Every code change runs the same backbone; its track sets how many steps and gates it gets. The quality bar never scales down, only the ceremony.
 
-A **slice** is the smallest change in behavior someone can observe and verify. Each slice is one change in version control, optionally preceded by a tidy-first change that only restructures.
+A **slice** is the smallest change in behavior someone can observe and verify. Each slice is one change in version control, optionally preceded by a tidy-first change that only restructures, proved by the existing checks passing unchanged.
 
 ## 1. Intake
 

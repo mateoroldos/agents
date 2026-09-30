@@ -1,6 +1,6 @@
 ---
 name: type-driven-development
-description: How we judge TypeScript program design, from types first to tests at the right seam. Use when modeling domain values, states, or failures; designing modules, interfaces, or seams; writing, choosing, or reviewing tests; making reliability decisions; or when another skill needs the program-design model.
+description: How we judge TypeScript program design, types first. Use when modeling domain values, states, or failures; designing modules, interfaces, or seams; making reliability decisions; or when another skill needs the program-design model.
 metadata:
   family: principle
 ---
@@ -39,10 +39,10 @@ A module, seam, option, or mode stays only if deleting it would spread knowledge
 
 ## Prove what types cannot
 
-Prove each behavior by the cheapest means that is enough: the types, an existing test, the running app, or a new test through the interfaces callers use, at the strongest boundary that exercises it. Each contract has one primary test, variants go in one table, and each name states the behavior it pins, such as `rejects an invitation accepted by another user`. The `audit-tests` skill decides whether a new test earns its place.
+Test only what the types cannot rule out. The `audit-tests` skill decides whether a test lands, at which boundary, and how it is written.
 
-- **Why:** a landed test is code to maintain, and it pays only by catching a regression nothing else catches.
-- **Smell:** a test that runs code without checking the answer, a test of what the types guarantee, one contract tested at several layers, a test that breaks when a refactor preserves behavior.
+- **Why:** a failure the compiler rules out needs no test to maintain.
+- **Smell:** a test of what the types guarantee.
 
 ## Decision order
 
@@ -62,7 +62,6 @@ Read every reference the task reaches before editing:
 - Design proposals, technical plans, or implementation handoffs: [`references/DESIGN.md`](references/DESIGN.md).
 - Domain values, parsing, brands, states, optionality, or failures: [`references/MODELING.md`](references/MODELING.md).
 - Ownership, deep modules, interfaces, seams, ports, naming, or file placement: [`references/MODULES.md`](references/MODULES.md).
-- Test level, test doubles, observable outcomes, deterministic tests, or properties: [`references/TESTING.md`](references/TESTING.md).
 - Inference, strictness, casts, immutability, imports, exports, or documentation: [`references/TYPESCRIPT.md`](references/TYPESCRIPT.md).
 - Resources, cancellation, transactions, retries, idempotency, configuration, secrets, or observability: [`references/RELIABILITY.md`](references/RELIABILITY.md).
 

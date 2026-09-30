@@ -34,6 +34,8 @@ Then check it against the junk patterns. A test that would break under a refacto
 
 A bug's regression test is the one test that must be seen failing: on the code before the fix, for the reported reason. One regression test at the owner boundary covers the bug; don't replay it at every layer it crosses.
 
+Write each test that passes the gate as [`references/writing.md`](references/writing.md) describes.
+
 Done when every added or changed test has its four answers and matches no junk pattern.
 
 ## Junk patterns

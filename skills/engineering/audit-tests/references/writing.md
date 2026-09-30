@@ -1,19 +1,8 @@
-# Testing
+# Writing a test
 
-Tests are proofs about observable behavior, not transcripts of implementation calls.
+How to write a test that passed the gate. The `effect-patterns` skill realizes these rules for Effect.
 
-## Choose the confidence seam
-
-Prefer the highest-confidence test that is reliable and proportionate:
-
-1. End-to-end through a real public entrypoint.
-2. Integration through real module and infrastructure seams.
-3. Focused examples or properties for pure domain modules.
-4. Unit tests for meaningful isolated behavior.
-
-Add lower-level tests when they cover important cases more precisely, not merely because the code has more functions.
-
-## Observe outcomes
+## Assert what callers observe
 
 Assert what a caller or neighboring system can observe:
 
@@ -24,7 +13,9 @@ Assert what a caller or neighboring system can observe:
 - interruption, finalization, or rollback;
 - bounded retries and idempotent results.
 
-Avoid assertions about private calls and ordering unless that interaction is the contract itself. Tests and callers should cross the same interface.
+Assert an interaction only when the interaction is the contract. Tests and callers cross the same interface.
+
+Name each test after the behavior it pins, such as `rejects an invitation accepted by another user`.
 
 ## Use honest substitutes
 
@@ -44,9 +35,7 @@ When types are part of a public contract, test accepted and rejected usage with 
 
 ## Make time and concurrency deterministic
 
-Control clocks, randomness, identifiers, dependencies, and synchronization. Wait for explicit readiness or observed events rather than elapsed wall time. A sleep is not proof that concurrent work finished.
-
-A bug's regression test fails on the code before the fix, for the reported reason. Refactors keep the same tests passing before and after.
+Control clocks, randomness, identifiers, dependencies, and synchronization. Wait for explicit readiness or observed events rather than elapsed wall time.
 
 ## Use properties where laws matter
 
