@@ -37,7 +37,7 @@ Pick one family. A skill that mixes families rots unevenly, so a workflow that n
 
 Pick its category: the topic directory in the skill repo, such as `engineering`, not its family. A project skill lives in that project's `.agents/skills/`.
 
-Make it model-invoked when the agent must reach it unprompted or another skill must reach it; its description then costs context on every turn. Otherwise set `disable-model-invocation: true` and invoke it by name. Principles and knowledge are usually model-invoked, workflows usually user-invoked.
+Make it model-invoked when the agent must reach it unprompted or another skill must reach it; its description then costs context on every turn. Otherwise set `disable-model-invocation: true` and invoke it by name.
 
 Done when family, category, invocation, and name are chosen.
 
