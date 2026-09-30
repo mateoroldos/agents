@@ -16,7 +16,7 @@ Source for my global agent instructions and skills. `agents-sync.fish` symlinks 
 
 - `AGENTS.global.md` affects every project at once. Show the proposed diff and wait for approval before writing it.
 - Keep `AGENTS.global.md` harness-neutral: no harness-specific syntax such as `@` imports, and no project or tool facts.
-- Before creating or editing a skill, read `skills/meta/writing-great-skills/SKILL.md` and hold the skill to it. A new skill goes in an existing category with a `metadata.family`.
+- Before creating or editing a skill, use the `write-skill` skill.
 - Refer to other skills by name, never by relative path: categories nest in the repo but harnesses see a flat list.
 - Never edit `vendor/`. Install and update it with the skills CLI from inside `vendor/`, as described in `README.md`.
 - When a skill adapts someone else's work, add or update its row in `CREDITS.md`.

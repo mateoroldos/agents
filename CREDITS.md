@@ -5,7 +5,7 @@ sources are MIT licensed. Where a skill started as someone else's, it is named b
 
 | Skill | Origin |
 | --- | --- |
-| `writing-great-skills` | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| `write-skill` | Adapted from `writing-great-skills` in [mattpocock/skills](https://github.com/mattpocock/skills) and the authoring and eval playbooks in [poteto's pstack](https://github.com/cursor/plugins/tree/main/pstack) |
 | `type-driven-development` | Principles adapted from [dmmulroy/skills](https://github.com/dmmulroy/skills), [Makisuo/skills](https://github.com/Makisuo/skills), and [kitlangton/skills](https://github.com/kitlangton/skills) |
 | `effect-ts` | Unmodified from [Effect-TS/skills](https://github.com/Effect-TS/skills/tree/main/skills/effect-ts), installed with the skills CLI (see `vendor/skills-lock.json`) |
 | `effect-patterns` | Application patterns adapted from [kitlangton/skills](https://github.com/kitlangton/skills), [dmmulroy/skills](https://github.com/dmmulroy/skills), and [Makisuo/skills](https://github.com/Makisuo/skills) |

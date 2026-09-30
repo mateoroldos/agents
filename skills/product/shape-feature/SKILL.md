@@ -3,7 +3,7 @@ name: shape-feature
 description: Shape an uncertain feature into an agreed outcome, boundaries, acceptance evidence, and delivery path before implementation.
 disable-model-invocation: true
 metadata:
-  family: technique
+  family: workflow
 ---
 
 # Shape a Feature

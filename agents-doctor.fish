@@ -25,7 +25,7 @@ end
 
 # The one list of owned-skill categories; each is a directory under skills/.
 set categories product design engineering stack tools meta
-set families standard technique knowledge
+set families principle workflow knowledge
 
 set owned_skills
 for entry in "$repo/skills"/*

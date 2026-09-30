@@ -2,7 +2,7 @@
 name: show-me
 description: Visual explanation. Use when the user asks for a diagram or when a flow, architecture, state model, UI structure, refactor, or comparison is clearer as a compact artifact than prose.
 metadata:
-  family: standard
+  family: principle
 ---
 
 # Show Me

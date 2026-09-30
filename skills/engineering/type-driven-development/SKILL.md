@@ -2,7 +2,7 @@
 name: type-driven-development
 description: Type-driven TypeScript development. Use when modeling domain values, states, or failures; writing technical designs; defining modules, interfaces, or seams; choosing tests; making reliability decisions; or when another skill needs the shared program-design model.
 metadata:
-  family: technique
+  family: workflow
 ---
 
 # Type-Driven Development

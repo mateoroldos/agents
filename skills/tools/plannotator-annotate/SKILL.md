@@ -4,7 +4,7 @@ description: Open Plannotator's annotation UI for a markdown file, HTML file, UR
 allowed-tools: Bash(plannotator:*)
 disable-model-invocation: true
 metadata:
-  family: technique
+  family: workflow
 ---
 
 # Plannotator Annotate

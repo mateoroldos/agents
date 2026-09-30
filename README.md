@@ -38,18 +38,10 @@ Every skill answers three questions:
 | Question | Recorded as | Options |
 | --- | --- | --- |
 | What is it about? | its category directory | `product` · `design` · `engineering` · `stack` · `tools` · `meta` |
-| How is it written? | `metadata.family` | `standard` · `technique` · `knowledge` |
+| How is it written? | `metadata.family` | `principle` · `workflow` · `knowledge` |
 | Who invokes it? | `disable-model-invocation` | model (costs context every turn) · user (costs memory) |
 
-The family is what makes a skill wrong:
-
-| Family | Wrong when | Shape |
-| --- | --- | --- |
-| Standard | you change your mind | flat reference, no steps |
-| Technique | your process changes | ordered steps + completion criteria |
-| Knowledge | the library ships | branch-chooser reference, version-pinned |
-
-A skill mixing two families rots unevenly — keep them apart.
+The `write-skill` skill defines the families and how to write each one.
 
 The directory tree and each `SKILL.md` frontmatter are the catalog; `ls skills/* vendor/skills` shows it.
 `agents-doctor.fish` fails when a skill sits outside a known category, lacks a family, or is vendored without

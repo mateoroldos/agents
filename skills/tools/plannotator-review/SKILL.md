@@ -4,7 +4,7 @@ description: Open Plannotator's browser-based code review UI for the current wor
 allowed-tools: Bash(plannotator:*)
 disable-model-invocation: true
 metadata:
-  family: technique
+  family: workflow
 ---
 
 # Plannotator Review

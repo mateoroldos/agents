@@ -4,7 +4,7 @@ description: Open Plannotator on the latest rendered assistant message and use t
 allowed-tools: Bash(plannotator:*)
 disable-model-invocation: true
 metadata:
-  family: technique
+  family: workflow
 ---
 
 # Plannotator Last
