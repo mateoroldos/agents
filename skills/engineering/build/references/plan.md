@@ -17,7 +17,7 @@ Track: big feature | big fix [+ stakes] · Status: shaping | approved | building
 
 ## Diagnosis                   <!-- fix: from the diagnose skill -->
 
-Symptom → cause → root, each with its evidence.
+The reproduction, then symptom → cause → root, each with its evidence.
 
 ## Shape
 
@@ -34,4 +34,4 @@ Symptom → cause → root, each with its evidence.
   - Proof: types | test `<name>` (<level>) | app: <what to check> | review: <why that is enough>
 ```
 
-Choose each slice's proof with the `audit-tests` skill. A test not named here lands only with a reason in the review packet.
+A test not named in a slice's proof lands only with a reason in the review packet.

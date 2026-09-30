@@ -59,7 +59,6 @@ When rules conflict:
 
 Read every reference the task reaches before editing:
 
-- Design proposals, technical plans, or implementation handoffs: [`references/DESIGN.md`](references/DESIGN.md).
 - Domain values, parsing, brands, states, optionality, or failures: [`references/MODELING.md`](references/MODELING.md).
 - Ownership, deep modules, interfaces, seams, ports, naming, or file placement: [`references/MODULES.md`](references/MODULES.md).
 - Inference, strictness, casts, immutability, imports, exports, or documentation: [`references/TYPESCRIPT.md`](references/TYPESCRIPT.md).
