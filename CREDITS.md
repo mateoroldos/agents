@@ -13,6 +13,7 @@ sources are MIT licensed. Where a skill started as someone else's, it is named b
 | `shape-feature` | Original synthesis informed by [mattpocock/skills](https://github.com/mattpocock/skills), [dmmulroy/skills](https://github.com/dmmulroy/skills), and [Dax Raad on product restraint](https://kentcdodds.com/chats/07/01/product-sense-restraint-and-opencode-with-dax-raad) |
 | `agent-browser` | Unmodified from [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser/tree/main/skills/agent-browser), installed with the skills CLI (see `vendor/skills-lock.json`) |
 | `audit-tests` | Adapted in our own words from the authoring gate, junk patterns, and audit of [openclaw's test-audit skill](https://github.com/openclaw/openclaw/blob/main/.agents/skills/test-audit/SKILL.md) |
+| `review-diff` | Informed by the deslop, no-comments, and interrogate practices in [poteto's pstack](https://github.com/cursor/plugins/tree/main/pstack) |
 | `design-engineering` | Emil Kowalski's design engineering and [animations.dev](https://animations.dev/) material |
 
 Except for the unmodified `effect-ts` and `agent-browser`, these are maintained here and do not track upstream.
