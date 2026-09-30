@@ -14,6 +14,9 @@ if not test -d "$repo/skills"
     exit 1
 end
 
+# Owned skills live in skills/<category>/<name>; the skills CLI installs third-party ones in vendor/skills/<name>.
+set skill_files "$repo/skills"/*/*/SKILL.md "$repo/vendor/skills"/*/SKILL.md
+
 # Links a source into place, refusing to replace anything that is not already a symlink.
 function link_into_place --argument-names owner src dest
     mkdir -p (dirname "$dest")
@@ -64,13 +67,14 @@ for dir in $skills_dirs
     end
     mkdir -p "$dir"
 
-    for skill_file in "$repo/skills"/*/SKILL.md
+    for skill_file in $skill_files
         set skill (dirname "$skill_file")
         link_into_place skills $skill "$dir/"(basename "$skill"); or exit 1
     end
 
     for entry in "$dir"/*
-        if test -L "$entry"; and string match -q -- "$repo/skills/*" (readlink "$entry"); and not test -e "$entry"
+        set target (readlink "$entry")
+        if test -L "$entry"; and string match -q -r -- "^$repo/(skills|vendor/skills)/" "$target"; and not test -e "$entry"
             rm "$entry"
             echo "skills: removed stale link $entry"
         end

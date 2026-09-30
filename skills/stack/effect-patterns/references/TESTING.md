@@ -1,6 +1,6 @@
 # Testing
 
-Use the installed Effect test integration and follow [`../../type-driven-development/references/TESTING.md`](../../type-driven-development/references/TESTING.md) for test strategy.
+Use the installed Effect test integration and follow `references/TESTING.md` in the `type-driven-development` skill for test strategy.
 
 ## Defaults
 

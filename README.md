@@ -25,10 +25,23 @@ Check that the repo is valid with:
 
 ## Skills
 
-Flat by necessity: Claude Code scans `~/.claude/skills/<name>/SKILL.md` exactly one level
-deep, so categories as subdirectories would be invisible to it.
+```text
+skills/<category>/<name>/SKILL.md   owned: written and edited here
+vendor/skills/<name>/SKILL.md       third-party: installed by the skills CLI, never edited
+```
 
-Each skill belongs to one family, and the family is what makes it wrong:
+Harnesses see one flat list: `agents-sync.fish` links every skill into each harness skills dir by name,
+so names must be unique across categories. Skills refer to each other by name, never by relative path.
+
+Every skill answers three questions:
+
+| Question | Recorded as | Options |
+| --- | --- | --- |
+| What is it about? | its category directory | `product` · `design` · `engineering` · `stack` · `tools` · `meta` |
+| How is it written? | `metadata.family` | `standard` · `technique` · `knowledge` |
+| Who invokes it? | `disable-model-invocation` | model (costs context every turn) · user (costs memory) |
+
+The family is what makes a skill wrong:
 
 | Family | Wrong when | Shape |
 | --- | --- | --- |
@@ -38,27 +51,42 @@ Each skill belongs to one family, and the family is what makes it wrong:
 
 A skill mixing two families rots unevenly — keep them apart.
 
-| Skill | Family | |
-| --- | --- | --- |
-| `type-driven-development` | Technique | Shape TypeScript from domain types through modules and proof |
-| `design-engineering` | Standard | UI polish, component design, animation decisions |
-| `effect-ts` | Technique | Official Effect repository setup |
-| `effect-patterns` | Knowledge | Version-aware Effect application architecture and patterns |
-| `show-me` | Standard | Explain flows, structure, and changes with compact visual artifacts |
-| `repo-librarian` | Knowledge | Local reference library of remote git repositories |
-| `agent-browser` | Knowledge | Browser automation via the `agent-browser` CLI (vendored stub) |
-| `jj-agent-workflow` | Technique | Isolate each mutating agent turn as a reviewable, discardable jj change |
-| `shape-feature` | Technique | Shape uncertain features before implementation (user-invoked) |
-| `writing-great-skills` | Standard | The bar every skill here is held to (user-invoked) |
-| `plannotator-*` | Technique | Annotation and review UI wrappers (user-invoked) |
+| Category | Skill | Family | |
+| --- | --- | --- | --- |
+| product | `shape-feature` | Technique | Shape uncertain features before implementation (user-invoked) |
+| design | `design-engineering` | Standard | UI polish, component design, animation decisions |
+| design | `show-me` | Standard | Explain flows, structure, and changes with compact visual artifacts |
+| engineering | `type-driven-development` | Technique | Shape TypeScript from domain types through modules and proof |
+| stack | `effect-patterns` | Knowledge | Version-aware Effect application architecture and patterns |
+| tools | `jj-agent-workflow` | Technique | Isolate each mutating agent turn as a reviewable, discardable jj change |
+| tools | `repo-librarian` | Knowledge | Local reference library of remote git repositories |
+| tools | `plannotator-annotate` | Technique | Annotate a file, URL, or folder in Plannotator (user-invoked) |
+| tools | `plannotator-last` | Technique | Annotate the last assistant message in Plannotator (user-invoked) |
+| tools | `plannotator-review` | Technique | Review the worktree or a PR in Plannotator (user-invoked) |
+| meta | `writing-great-skills` | Standard | The bar every skill here is held to (user-invoked) |
+| vendor | `effect-ts` | — | Official Effect repository setup |
+| vendor | `agent-browser` | — | Browser automation via the `agent-browser` CLI |
+
+`agents-doctor.fish` fails when a skill sits outside a known category, lacks a family, is missing from
+this table, or is vendored without a lock entry.
 
 Attribution for skills adapted from other developers: [CREDITS.md](CREDITS.md).
 
-Unmodified third-party skills are installed and updated with the [skills CLI](https://github.com/vercel-labs/skills),
-which records their source in `skills-lock.json`. `-a openclaw` is used only because its project
-skills directory is `skills/`:
+### Third-party skills
+
+| Mode | When | Where |
+| --- | --- | --- |
+| Adopt | use it unchanged | `vendor/`, installed and updated by the skills CLI |
+| Adapt | you want to change it | an owned category, plus a row in `CREDITS.md` |
+| Try | one-off use | `npx skills use <owner>/<repo>@<skill>`, nothing installed |
+
+`vendor/` is the [skills CLI](https://github.com/vercel-labs/skills)'s project: run it from there so it writes
+`vendor/skills/` and `vendor/skills-lock.json`. `-a openclaw` is used only because its project skills directory
+is `skills/`. Read the diff after every update: skills run with full agent permissions.
 
 ```fish
+cd vendor
 npx skills add <owner>/<repo> -s <skill> -a openclaw --copy   # install
 npx skills update -p                                          # update
+cd .. && ./agents-sync.fish
 ```

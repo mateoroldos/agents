@@ -1,6 +1,8 @@
 ---
 name: repo-librarian
 description: "Build and use a local reference library of remote git repositories. Cache repos, refresh them safely, search source, analyze architecture, extract patterns, and compare implementations across projects. Use when the user mentions a GitHub/GitLab/Bitbucket repo, asks for examples from real projects, or wants implementation patterns from external codebases."
+metadata:
+  family: knowledge
 ---
 
 # Repo Librarian
@@ -37,51 +39,51 @@ Repo Librarian metadata lives at:
 
 ## Core commands
 
-Scripts live in this skill's `scripts/` directory. `~/agents/skills/` is the canonical path — every harness links this skill to it, so this resolves under every tool.
+Scripts live in this skill's `scripts/` directory. `~/agents/skills/tools/repo-librarian/` is the canonical path — every harness links this skill to it, so this resolves under every tool.
 
 Resolve, clone, refresh, and print the local checkout path:
 
 ```bash
-bash ~/agents/skills/repo-librarian/scripts/checkout.sh <repo> --path-only
+bash ~/agents/skills/tools/repo-librarian/scripts/checkout.sh <repo> --path-only
 ```
 
 Examples:
 
 ```bash
-bash ~/agents/skills/repo-librarian/scripts/checkout.sh mitsuhiko/minijinja --path-only
-bash ~/agents/skills/repo-librarian/scripts/checkout.sh github.com/mitsuhiko/minijinja --path-only
-bash ~/agents/skills/repo-librarian/scripts/checkout.sh https://github.com/mitsuhiko/minijinja --path-only
+bash ~/agents/skills/tools/repo-librarian/scripts/checkout.sh mitsuhiko/minijinja --path-only
+bash ~/agents/skills/tools/repo-librarian/scripts/checkout.sh github.com/mitsuhiko/minijinja --path-only
+bash ~/agents/skills/tools/repo-librarian/scripts/checkout.sh https://github.com/mitsuhiko/minijinja --path-only
 ```
 
 List cached repos:
 
 ```bash
-bash ~/agents/skills/repo-librarian/scripts/list.sh
+bash ~/agents/skills/tools/repo-librarian/scripts/list.sh
 ```
 
 Search one repo:
 
 ```bash
-bash ~/agents/skills/repo-librarian/scripts/search.sh vercel/next.js "defineConfig"
+bash ~/agents/skills/tools/repo-librarian/scripts/search.sh vercel/next.js "defineConfig"
 ```
 
 Search all cached repos:
 
 ```bash
-bash ~/agents/skills/repo-librarian/scripts/search-all.sh "defineConfig"
+bash ~/agents/skills/tools/repo-librarian/scripts/search-all.sh "defineConfig"
 ```
 
 Analyze one repo and create/update a reusable note:
 
 ```bash
-bash ~/agents/skills/repo-librarian/scripts/analyze.sh vercel/next.js
+bash ~/agents/skills/tools/repo-librarian/scripts/analyze.sh vercel/next.js
 ```
 
 Tag a repo:
 
 ```bash
-bash ~/agents/skills/repo-librarian/scripts/tags.sh add vercel/next.js react framework typescript
-bash ~/agents/skills/repo-librarian/scripts/tags.sh list vercel/next.js
+bash ~/agents/skills/tools/repo-librarian/scripts/tags.sh add vercel/next.js react framework typescript
+bash ~/agents/skills/tools/repo-librarian/scripts/tags.sh list vercel/next.js
 ```
 
 ## Recommended workflow

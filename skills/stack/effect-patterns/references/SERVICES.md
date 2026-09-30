@@ -1,6 +1,6 @@
 # Services and Layers
 
-Apply the ownership and depth model in [`../../type-driven-development/references/MODULES.md`](../../type-driven-development/references/MODULES.md). An Effect service is an authority seam: a cohesive capability whose requirement should remain visible in the Effect type until a composition root chooses its implementation.
+Apply the ownership and depth model in `references/MODULES.md` in the `type-driven-development` skill. An Effect service is an authority seam: a cohesive capability whose requirement should remain visible in the Effect type until a composition root chooses its implementation.
 
 ## Apply the service test
 

@@ -2,11 +2,13 @@
 name: effect-patterns
 description: Effect application patterns. Use when writing or reviewing Effect workflows, schemas, errors, services, Layers, configuration, resource lifecycles, concurrency, schedules, streams, caches, HTTP integrations, tests, or service architecture.
 compatibility: Requires Effect v4 and its installed package guidance.
+metadata:
+  family: knowledge
 ---
 
 # Effect Application Patterns
 
-Realize the model from [`../type-driven-development/SKILL.md`](../type-driven-development/SKILL.md) with Effect. This skill owns application taste; the installed `effect` package owns API truth.
+Realize the model from the `type-driven-development` skill with Effect. This skill owns application taste; the installed `effect` package owns API truth.
 
 ```text
 unknown input
@@ -31,7 +33,7 @@ Effect v4 moves quickly. Never recommend an API from memory.
 
 **Complete when:** every material API or pattern has version-matched guidance, or source inspection established that no focused guidance exists.
 
-The separate official [`../effect-ts/SKILL.md`](../effect-ts/SKILL.md) owns repository setup and installation. Do not change the Effect version unless the task requires it.
+The separate official `effect-ts` skill owns repository setup and installation. Do not change the Effect version unless the task requires it.
 
 ## Application defaults
 

@@ -1,6 +1,8 @@
 ---
 name: design-engineering
 description: UI polish, component design, animation decisions, and the invisible details that make software feel right. Use when building or reviewing UI, and for any question about motion — easing, timing, duration, springs, transitions, keyframes, transforms, hover and press feel, microinteractions, entrance and exit animations, stagger, drag and gesture interactions, page transitions, modals, dropdowns, tooltips, popovers, drawers, animation performance, prefers-reduced-motion, or when something "feels janky" and should be made smooth.
+metadata:
+  family: standard
 ---
 
 # Design Engineering

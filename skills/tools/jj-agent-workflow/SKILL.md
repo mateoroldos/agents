@@ -1,6 +1,8 @@
 ---
 name: jj-agent-workflow
 description: Jujutsu turn checkpoints. Use before modifying files in a jj repository, when resuming or reviewing agent changes, when the user wants to keep or discard a turn, when concurrent writing agents need isolation, or when preparing changes to land.
+metadata:
+  family: technique
 ---
 
 # jj Turn Checkpoints
