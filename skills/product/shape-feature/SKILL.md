@@ -1,7 +1,6 @@
 ---
 name: shape-feature
-description: Shape an uncertain feature into an agreed outcome, boundaries, acceptance evidence, and delivery path before implementation.
-disable-model-invocation: true
+description: Shape an uncertain feature into an agreed contract, slices, and evidence before implementation. Use when a feature's behavior, scope, or slices are not yet agreed.
 metadata:
   family: workflow
 ---
@@ -55,8 +54,6 @@ Do not introduce parallel writers unless the selected slices have independent ow
 
 ## Handoff
 
-Return the approved contract in the conversation using only the applicable headings from step 3, followed by the selected delivery path. Persist it in the repository only when the user requests that or when approved multi-session work needs a durable handoff.
+Write the plan to `plans/<name>.md` in the plan format of the `build` skill: the step 3 contract, the decisions, and the slices of the chosen path, each with its evidence.
 
-If technical design is next, use the repository's applicable design skill. If implementation is next, begin a version-control checkpoint immediately before the first mutation.
-
-**Complete when:** the user has an approved, concise feature contract or a precise list of decisions blocking one; no implementation has begun.
+**Complete when:** the plan holds a contract and slices ready for approval, or a precise list of the decisions blocking one; no implementation has begun.
