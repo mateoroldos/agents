@@ -20,6 +20,7 @@ Route it elsewhere when it is:
 | Needed on every task | the global AGENTS.md |
 | A fact about one project | that project's AGENTS.md, docs, or code |
 | Enforceable by a machine | a type, lint rule, test, script, or hook, with no text |
+| A story of how a task went: what was tried, fixed, or learned once | the commit or change description |
 | A one-off, or already the model's default | nowhere |
 | Covered by an existing skill | an edit to that skill |
 
