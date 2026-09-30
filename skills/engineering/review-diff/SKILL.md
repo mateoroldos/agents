@@ -11,7 +11,7 @@ Every line the human reviews must be there because the change needs it. Review o
 
 ## 1. Read the whole diff
 
-The base is trunk, or the top of the unmerged landing below this one. Read every hunk of `jj diff --from <base> --to @`, or `git diff $(git merge-base HEAD <base>)` without jj.
+The base is trunk, or the top of the unmerged pull request below this one. Read every hunk of `jj diff --from <base> --to @`, or `git diff $(git merge-base HEAD <base>)` without jj.
 
 Done when every changed file has been read, not only the ones you remember touching.
 
@@ -52,4 +52,4 @@ Done when every finding is fixed or answered.
 
 ## Deliverable
 
-For the review packet: what you cut, by kind and count, and each reviewer finding with its outcome (fixed, or answered with the reason).
+For the pull request description: what you cut, by kind and count, and each reviewer finding with its outcome (fixed, or answered with the reason).

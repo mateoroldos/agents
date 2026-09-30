@@ -1,6 +1,6 @@
 # Landing
 
-Pushing publishes a landing; do it only when the workflow's gate allows it. Push only the lowest unmerged landing, so its pull request is based on trunk; `<top-id>` is its last change.
+Pushing publishes a pull request; do it only when the workflow's gate allows it. Push only the lowest unmerged pull request, so it is based on trunk; `<top-id>` is its last change.
 
 ## 1. Prove the stack
 
@@ -37,10 +37,10 @@ A rejected push, a conflicted bookmark, or an outgoing set that changed after th
 ## 3. Open the pull request
 
 ```sh
-gh pr create --head <bookmark> --base <trunk-branch> --title "<subject>" --body-file <packet.md>
+gh pr create --head <bookmark> --base <trunk-branch> --title "<subject>" --body-file <description.md>
 ```
 
-For a landing the workflow lets merge itself, queue the merge; it runs once the required checks pass:
+For a pull request the workflow lets merge itself, queue the merge; it runs once the required checks pass:
 
 ```sh
 gh pr merge <bookmark> --auto --rebase --delete-branch
@@ -55,4 +55,4 @@ jj git fetch
 jj log -r 'trunk()..@'
 ```
 
-jj recognizes the merged changes as rewritten and rebases the rest of the stack onto trunk, so the log shows only unmerged work. If it still shows merged changes, stop and report. The next landing starts again at step 1.
+jj recognizes the merged changes as rewritten and rebases the rest of the stack onto trunk, so the log shows only unmerged work. If it still shows merged changes, stop and report. The next pull request starts again at step 1.
