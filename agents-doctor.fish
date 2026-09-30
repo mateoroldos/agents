@@ -133,6 +133,15 @@ for skill in $vendor_skills
     check_skill $skill vendor
 end
 
+# Skills name each other as "`<name>` skill"; a rename or removal must not leave a dangling name.
+for file in "$repo"/AGENTS.md "$repo"/README.md (find "$repo/skills" -name '*.md')
+    for name in (string match -r -a -g '`([a-z0-9-]+)` skill' < "$file")
+        if not contains -- "$name" $names
+            fail (string replace "$repo/" '' "$file")": names the missing skill $name"
+        end
+    end
+end
+
 set skills_dirs
 
 for adapter in "$repo/adapters"/*.fish
