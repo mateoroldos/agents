@@ -17,7 +17,7 @@ Done when the affected actor, present problem, constraints, and consequential un
 
 ## 2. Resolve product decisions
 
-Interview the user only about answers that could change whether the feature belongs, its observable behavior, scope, risk, or permanent complexity. Test the idea against existing concepts, realistic scenarios, edge cases, and the option not to build it.
+Interview the user only about answers that could change whether the feature belongs, its observable behavior, scope, risk, or permanent complexity. Ask one question at a time, with your recommended answer. Test the idea against existing concepts, realistic scenarios, edge cases, and the option not to build it.
 
 Keep implementation preferences provisional. Record unresolved decisions explicitly rather than inventing them.
 

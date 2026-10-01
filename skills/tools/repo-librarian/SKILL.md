@@ -103,15 +103,15 @@ When extracting ideas from repos, answer in this shape:
 ## Pattern
 <short name>
 
+## How to adapt it here
+<practical recommendation for the user's project>
+
 ## Why it matters
 <what problem it solves>
 
 ## Evidence
 - `<repo>/<path>` — <what this file shows>
 - `<repo>/<path>` — <what this file shows>
-
-## How to adapt it here
-<practical recommendation for the user's project>
 
 ## Tradeoffs
 <costs, constraints, or when not to use it>

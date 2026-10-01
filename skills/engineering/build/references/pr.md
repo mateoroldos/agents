@@ -9,16 +9,16 @@ It answers what a reviewer needs in the order they need it, so they read the key
 
 PR <n> of <m> · ask | show
 
+## Decisions made without you
+
+- <assumption>: <why>
+
 ## Map
 
 In order; ▸ read closely, · skim.
 
 1. `<change subject>`  ▸ `<file>`: `<symbol>`
 2. `<change subject>`  · <what to look at instead, such as a screenshot>
-
-## Decisions made without you
-
-- <assumption>: <why>
 
 ## Evidence
 
