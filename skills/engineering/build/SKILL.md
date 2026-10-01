@@ -43,7 +43,7 @@ Done when the result in the table exists.
 
 Write the plan's Design and Pull requests: the types and call stacks, judged by the `type-driven-development` skill, then the changes grouped into pull requests as [`references/releasable.md`](references/releasable.md) describes, each behavior change with its proof, chosen with the `audit-tests` skill.
 
-Done when every behavior change has a proof, every pull request names how it keeps trunk releasable and its mode, and every decision it needs is made or listed as open.
+Done when every behavior change has a proof, every pull request has a Trunk path row, and every decision it needs is made or listed under Needs you.
 
 ## 4. Plan gate (big tracks)
 

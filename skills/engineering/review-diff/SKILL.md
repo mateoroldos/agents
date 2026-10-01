@@ -52,4 +52,4 @@ Done when every finding is fixed or answered.
 
 ## Deliverable
 
-For the pull request description: what you cut, by kind and count, and each reviewer finding with its outcome (fixed, or answered with the reason).
+For the pull request description: each reviewer finding with its outcome (fixed, or answered with the reason).
