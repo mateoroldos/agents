@@ -14,7 +14,7 @@ if not test -d "$repo/skills"
     exit 1
 end
 
-# Owned skills live in skills/<category>/<name>; the skills CLI installs third-party ones in vendor/skills/<name>.
+# Owned skills live in skills/<level>/<name>; the skills CLI installs third-party ones in vendor/skills/<name>.
 set skill_files "$repo/skills"/*/*/SKILL.md "$repo/vendor/skills"/*/SKILL.md
 
 # Links a source into place, refusing to replace anything that is not already a symlink.

@@ -13,13 +13,14 @@ When sources conflict, follow this order and say which one you chose:
 ## Before acting
 
 - Don't guess. Establish facts from the code, tools, installed versions, and primary docs.
-- Before designing, writing, or reviewing code, load the skill that matches the task.
+- Before designing, writing, or reviewing code or text, load the skills that match the task.
 - Stop and ask when the answer would change what you build, or when an action is irreversible or outward-facing. Otherwise, state your assumption and proceed.
 
 ## Doing the work
 
 - Make the smallest change that fully solves the request. Prefer deleting to adding. Add an abstraction, dependency, file, or comment only when there's a demonstrated need.
 - Follow existing patterns and the project's domain terms, even where you'd choose differently. If you disagree, say so; don't act on it.
+- Separate the steps of a block with one blank line, such as setup, each operation, and the return; keep a step's lines together. Keep existing blank lines.
 - Leave unrelated code alone.
 - Prove the change on the real artifact, using the project's verification skill or commands when they exist.
 - When I correct you, propose where the lesson belongs: the project's instructions, a skill, or a mechanical check (type, test, lint rule, hook).
@@ -31,6 +32,7 @@ I have ADHD and read agent output all day. In replies, plans, and PR description
 - Research deeply; answer briefly. Your first sentence is the answer, the status, or what you need from me. Then the detail, most important first. Stop when the content ends: no recap.
 - While working, say in one sentence what you're about to do. After that, update only when you find something or change direction.
 - One idea per paragraph, three sentences at most. Short sentences, plain words, the project's names for things.
+- One fact per line. Order sections by how often the reader needs them; put status and decisions first.
 - Separate what you verified, what you inferred, and what you assumed.
 - When structure matters, show it instead of describing it, with real names and paths and only the parts the question needs: runtime flow and failures → a typed call stack; files or ownership → a tree; before and after → a diff; options against shared criteria → a table; states → a state diagram; logic → pseudocode.
 - End a task in this shape: the outcome in one line; what changed (a diff or file list); what you ran and the result; what's left or needs my decision.

@@ -1,8 +1,6 @@
 ---
 name: write-skill
 description: Create, edit, review, or classify an agent skill. Use when writing or changing a SKILL.md, deciding whether a lesson or correction should become a skill, or when a skill misfires.
-metadata:
-  family: workflow
 ---
 
 # Write a Skill
@@ -19,6 +17,7 @@ Route it elsewhere when it is:
 | --- | --- |
 | Needed on every task | the global AGENTS.md |
 | A fact about one project | that project's AGENTS.md, docs, or code |
+| A procedure or technology only one project uses, or one its collaborators and cloud agents must also get | that project's `.agents/skills/` |
 | Enforceable by a machine | a type, lint rule, test, script, or hook, with no text |
 | A story of how a task went: what was tried, fixed, or learned once | the commit or change description |
 | A one-off, or already the model's default | nowhere |
@@ -28,36 +27,36 @@ Done when X → Y comes from observed behavior and none of the rows above fits.
 
 ## 2. Classify
 
-Pick one family. A skill that mixes families rots unevenly, so a workflow that needs a principle names the principle skill instead of restating it.
+Pick one level; it is the skill's directory, and it decides what the skill may name, so each skill works without the ones it doesn't name. A skill that mixes levels rots unevenly, so split it, and let each part be found by its description.
 
-| Family | Holds | Wrong when | Named as |
-| --- | --- | --- | --- |
-| principle | how we judge: named rules | taste changes | `<topic>-principles` |
-| workflow | how we do a task: steps to a deliverable | the process changes | a verb: `shape-feature` |
-| knowledge | how one technology realizes our principles | the technology ships | the technology: `effect-patterns` |
+| Directory | Holds | Wrong when | Named as | May name |
+| --- | --- | --- | --- | --- |
+| `events/` | what to do when a moment in the work arrives: steps to a gate | the process changes | a verb: `plan` | what it loads and hands off to |
+| `principles/` | how we judge: named rules | taste changes | `<topic>-principles` | nothing |
+| `patterns/` | how one technology applies our principles | the technology ships | the technology: `jj` | the principles it applies, the event it serves, other patterns |
+| `tools/` | a command the user invokes by name | the tool changes | the tool | nothing; only meta names it |
+| `meta/` | how we write skills | the system changes | a verb | anything |
 
-Pick its category: the topic directory in the skill repo, such as `engineering`, not its family. A project skill lives in that project's `.agents/skills/`.
+Make it model-invoked when the agent must reach it unprompted or another skill must reach it; its description then costs context on every turn. A tool sets `disable-model-invocation: true`.
 
-Make it model-invoked when the agent must reach it unprompted or another skill must reach it; its description then costs context on every turn. Otherwise set `disable-model-invocation: true` and invoke it by name.
-
-Done when family, category, invocation, and name are chosen.
+Done when level, invocation, and name are chosen.
 
 ## 3. Draft
 
 ```text
 <name>/
-  SKILL.md       frontmatter: name, description, metadata.family; target ≤ 100 lines
+  SKILL.md       frontmatter: name, description; target ≤ 100 lines
   references/    what only some uses need, one level deep
   scripts/       deterministic work the agent runs instead of reasoning through
 ```
 
 A model-invoked description says what the skill does, then "Use when" with one trigger per distinct situation, in the words the user types. A user-invoked description is one line for a human.
 
-Body by family:
+Body by level:
 
 - **principle:** a `##` heading per named rule, then the rule as one imperative line, **Why** in one line, **Smell** (what a violation looks like), and **Check** (the mechanism that could enforce it, if any).
-- **workflow:** numbered steps, each ending in "Done when" with a condition the agent can observe, then the deliverable.
-- **knowledge:** the version and the source of truth, a rules table in which each rule names the principle it realizes, and pointers to the official docs.
+- **event:** one line naming the skills to load and what it may change, then numbered steps; the last ends in "Done when" with a condition the agent can observe and the event it hands off to.
+- **pattern:** a first line naming the principles it applies (or the event it serves) and the version, then the mechanics, then pointers to the official docs.
 
 Taste belongs to the user. For a principle skill, interview them one question at a time and keep their words. Draft only what they confirmed or what the observed failure shows.
 
@@ -80,7 +79,7 @@ Done when validation passes and the report names the failure, the classification
 1. **Every line changes a decision.** Test each sentence alone; delete a sentence that fails rather than rewording it.
 2. **Command, don't justify.** A principle gets one line of why; a step gets none.
 3. **Name it.** A precise, familiar word (_slice_, _red_, _tight_) carries a behavior in one token. Reuse it until it is the skill's vocabulary.
-4. **One home per meaning.** Point to another skill by name; never restate it.
+4. **One home per meaning.** Never restate another skill; name it where your level allows, or leave it to discovery.
 5. **Show, don't narrate.** Prefer a table, tree, signature, or example to a paragraph.
 6. **Structure over text.** When a check can enforce a rule, build the check and delete the rule.
 7. **Disclose by use.** Inline what every use needs. Move what only some uses need to `references/<topic>.md`, behind a pointer that says when to read it.
