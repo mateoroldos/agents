@@ -25,7 +25,7 @@ The reproduction, then symptom → cause → root, each with its evidence.
 
 ## Decisions
 
-- <decision>: <choice> (<why>)
+- <decision>: <choice> over <alternative> (<why>)
 - Open: <question that blocks a change>
 
 ## Pull requests
@@ -38,6 +38,17 @@ The reproduction, then symptom → cause → root, each with its evidence.
 PR: <URL, once opened>
 
 ### 2. <what trunk gains> · keystone · ask
+```
+
+Write each call stack with the real signature at the top and each failure beside the step that raises it:
+
+```text
+checkout(input: CheckoutInput): Promise<Result<Order, CheckoutError>>
+  ├─ Inventory.reserve(input.lines) → Reservation
+  │    └─ unavailable → OutOfStock
+  ├─ Payments.authorize(input.total) → Authorization
+  │    └─ declined → PaymentDeclined
+  └─ Orders.place(reservation, authorization) → Order
 ```
 
 A test not named in a change's proof lands only with a reason in the pull request description.

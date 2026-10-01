@@ -47,7 +47,7 @@ Done when every behavior change has a proof, every pull request names how it kee
 
 ## 4. Plan gate (big tracks)
 
-Stop and present the plan: its pull requests, their changes and proofs, the key types, the decisions, and the open questions. Write no product code before the user approves it.
+Stop and present the plan, leading with the open questions and the decisions that need approval, then its pull requests, their changes and proofs, and the key types. Write no product code before the user approves it.
 
 Done when the user has approved the plan.
 
