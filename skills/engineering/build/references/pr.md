@@ -1,13 +1,12 @@
 # Pull request description
 
-It answers what a reviewer needs in the order they need it, so they read the key lines instead of the whole diff. Leave out a section with nothing to say.
+It tells whoever approves the merge what trunk gains and how to undo it, then where to look, so they read the key lines instead of the whole diff. Leave out a section with nothing to say.
 
 ```markdown
-## Why
+<One or two lines: what merging this does to trunk, and why. Link the plan if there is one.>
 
-<One to three lines: the problem and the behavior now. Link the plan if there is one.>
-
-PR <n> of <m> · ask | show
+Live: <users see nothing | behind `<flag>`, off | <the new behavior>> · Undo: <revert | what blocks it, and the way back>
+Stack: <n> of <m> · on #<prev> | on trunk · next: <what PR n+1 adds> · ask | show
 
 ## Decisions made without you
 
@@ -27,9 +26,10 @@ In order; ▸ read closely, · skim.
 
 ## Review
 
-- Cut: <kinds and counts>
 - <reviewer>: <finding>, fixed | answered: <reason>
 ```
+
+Copy `Live` and `Undo` from the pull request's row in the plan's Trunk path. Re-read the description before merging; rewrite any line the review made false.
 
 Mark ▸ on types and signatures, stakes lines (migrations, access policy, anything irreversible), and test names with their assertions. For UI, show a screenshot instead of asking for markup to be read.
 

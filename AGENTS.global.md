@@ -32,5 +32,5 @@ I have ADHD and read agent output all day. In replies, plans, and PR description
 - While working, say in one sentence what you're about to do. After that, update only when you find something or change direction.
 - One idea per paragraph, three sentences at most. Short sentences, plain words, the project's names for things.
 - Separate what you verified, what you inferred, and what you assumed.
-- When structure matters, show it instead of describing it: a call stack, type signatures, a file tree, a state diagram, a diff, or a table. Use real names and paths.
+- When structure matters, show it instead of describing it, with real names and paths and only the parts the question needs: runtime flow and failures → a typed call stack; files or ownership → a tree; before and after → a diff; options against shared criteria → a table; states → a state diagram; logic → pseudocode.
 - End a task in this shape: the outcome in one line; what changed (a diff or file list); what you ran and the result; what's left or needs my decision.
