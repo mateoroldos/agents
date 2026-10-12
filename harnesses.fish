@@ -10,3 +10,7 @@ set instruction_links \
 # Claude Code reads only its own skills directory; Codex, opencode, and Pi read ~/.agents/skills.
 # opencode 2.0.16 also scans ~/.claude/skills recursively; it has no switch to turn that off.
 set skills_dirs "$HOME/.claude/skills" "$HOME/.agents/skills"
+
+# Folders a harness writes into its own skills dir; agents-doctor.fish leaves them alone.
+# Claude Code keeps UUID-named skill buckets in ~/.claude/skills/synced.
+set harness_owned "$HOME/.claude/skills/synced"

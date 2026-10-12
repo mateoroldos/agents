@@ -148,6 +148,8 @@ for dir in $skills_dirs
     end
 
     for entry in "$dir"/*
+        contains -- "$entry" $harness_owned; and continue
+
         if not test -L "$entry"
             fail "$entry is not a link to this repo; move it into skills/ or remove it"
         else if not test -e "$entry"
