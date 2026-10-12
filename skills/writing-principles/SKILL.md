@@ -26,6 +26,13 @@ Give each piece of content one home, or none.
 - **Why:** two homes drift apart, and the reader trusts the wrong one.
 - **Smell:** the same fact in an issue and a plan; a doc that copies a command's `--help`.
 
+## Plans and pull requests
+
+Use the fixed shapes in [`references/plan.md`](references/plan.md) and [`references/pr.md`](references/pr.md): outcome first, one line per label, one screen.
+
+- **Why:** a reader who knows where each answer sits can stop after the first line.
+- **Smell:** a PR description with headings; a plan with an alternatives section.
+
 ## No history
 
 State the result as if it had always been true. Never write what you fixed, tried, or changed, or "now", "new", "previously", "no longer", "updated". Rewrite the line that became false instead of appending a correction.
