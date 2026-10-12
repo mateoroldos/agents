@@ -4,7 +4,7 @@ set script_dir (dirname (status --current-filename))
 set repo (realpath "$script_dir")
 set failed 0
 set -g names
-set -g levels
+source "$repo/harnesses.fish"
 
 function fail
     echo "error: $argv" >&2
@@ -24,19 +24,9 @@ for stray in "$HOME/AGENTS.md" "$HOME/CLAUDE.md"
     end
 end
 
-# The one list of levels; each is a directory under skills/, and decides what its skills may name.
-set level_dirs events principles patterns tools meta
-
 set owned_skills
-for entry in "$repo/skills"/*
-    set level_dir (basename "$entry")
-    if not test -d "$entry"; or not contains -- "$level_dir" $level_dirs
-        fail "skills/$level_dir is not a level ($level_dirs); skills live in skills/<level>/<name>"
-        continue
-    end
-    for skill in "$entry"/*
-        test -d "$skill"; and set owned_skills $owned_skills "$skill"
-    end
+for skill in "$repo/skills"/*
+    test -d "$skill"; and set owned_skills $owned_skills "$skill"
 end
 set vendor_skills
 for skill in "$repo/vendor/skills"/*
@@ -110,23 +100,10 @@ function check_skill --argument-names skill kind
         fail "$dir_name: description exceeds 1024 characters"
     end
 
-    # A skill's level is its directory, and decides which skills it may name; see the dependency check below.
-    set level pattern
-    if test "$kind" = owned
-        set level (string replace -r 's$' '' -- (basename (dirname "$skill")))
-        set user_invoked (contains -- 'disable-model-invocation: true' $lines[2..(math $end_line - 1)]; and echo yes)
-        if test "$level" = tool; and test "$user_invoked" != yes
-            fail "$dir_name: a skill in tools/ must set disable-model-invocation: true"
-        else if test "$level" != tool; and test "$level" != meta; and test "$user_invoked" = yes
-            fail "$dir_name: a user-invoked skill belongs in tools/"
-        end
-    end
-
     if contains -- "$name" $names
         fail "$dir_name: duplicate skill name: $name"
     else
         set -g names $names "$name"
-        set -g levels $levels "$level"
     end
     if test "$kind" = vendor; and not string match -q -- "*\"$name\":*" (string collect < "$repo/vendor/skills-lock.json")
         fail "$dir_name: vendored skill missing from vendor/skills-lock.json; install it with the skills CLI from vendor/"
@@ -149,62 +126,10 @@ for file in "$repo"/AGENTS.md "$repo"/README.md (find "$repo/skills" -name '*.md
     end
 end
 
-# Events name what they load and hand off to; patterns name what they apply; principles name nothing.
-# Only meta skills name tools. Anything else is found by its description, so each skill works alone.
-function may_name --argument-names from to
-    switch $from
-        case meta
-            return 0
-        case event
-            contains -- $to event principle pattern meta
-        case pattern
-            contains -- $to principle pattern event
-        case '*'
-            return 1
-    end
-end
-
-for skill in $owned_skills
-    set from $levels[(contains -i -- (basename "$skill") $names)]
-    for file in (find "$skill" -name '*.md')
-        for name in (string match -r -a -g '`([a-z0-9-]+)` skill' < "$file")
-            contains -- "$name" $names; or continue
-            set to $levels[(contains -i -- "$name" $names)]
-            if not may_name $from $to
-                fail (string replace "$repo/" '' "$file")": a $from skill names the $to skill $name"
-            end
-        end
-    end
-
-    # A pattern says which principle it applies, or which event it serves, in its SKILL.md.
-    if test "$from" = pattern
-        set applies 0
-        for name in (string match -r -a -g '`([a-z0-9-]+)` skill' < "$skill/SKILL.md")
-            contains -- "$name" $names; or continue
-            contains -- $levels[(contains -i -- "$name" $names)] principle event; and set applies 1
-        end
-        test $applies -eq 1; or fail (basename "$skill")": a pattern must name the principle it applies or the event it serves"
-    end
-end
-
-set skills_dirs
-
-for adapter in "$repo/adapters"/*.fish
-    set -e adapter_name
-    set -e adapter_links
-    set -e adapter_skills_dir
-    source "$adapter"
-
-    for link in $adapter_links
-        set parts (string split -m 1 : "$link")
-        set target (readlink "$parts[2]")
-        if test "$target" != "$parts[1]"
-            fail "$adapter_name: $parts[2] is not linked to $parts[1]; run agents-sync.fish"
-        end
-    end
-
-    if set -q adapter_skills_dir; and not contains -- "$adapter_skills_dir" $skills_dirs
-        set skills_dirs $skills_dirs "$adapter_skills_dir"
+for dest in $instruction_links
+    set target (readlink "$dest")
+    if test "$target" != "$repo/AGENTS.global.md"
+        fail "$dest is not linked to $repo/AGENTS.global.md; run agents-sync.fish"
     end
 end
 

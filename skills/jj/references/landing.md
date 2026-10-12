@@ -1,6 +1,6 @@
 # Landing
 
-Pushing publishes a pull request; do it only inside the `ship` skill. `<top-id>` is the pull request's last change.
+Pushing publishes a pull request; push only when the user asks to open or update one. `<top-id>` is the pull request's last change.
 
 ## 1. Prove the stack
 
@@ -36,7 +36,9 @@ A rejected push, a conflicted bookmark, or an outgoing set that changed after th
 
 ## 3. Open the pull request
 
-Open it from `<bookmark>`, as the `github` skill shows.
+```sh
+gh pr create --head <bookmark> --title "<subject>" --body-file <description.md>
+```
 
 Done when the remote holds exactly the tested stack and the pull request URL is reported.
 

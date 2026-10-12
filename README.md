@@ -23,58 +23,18 @@ Check that the repo is valid with:
 ./agents-doctor.fish
 ```
 
-## Workflow
-
-Each event skill fires at one moment in the work and stops at a gate:
-
-```text
-         ┌──────────── ship: merged → next pull request ────────────┐
-         ▼                                                           │
- work ─▶ plan ──you approve──▶ build ──▶ review-diff ──▶ ship ───────┘
-         ▲                       │
-         └──────── a guess ──────┘
-```
-
-`plan` and `ship` open with a status block: the epic, the issue, the pull request, and what's next.
-
-| Event | Fires when | May change |
-| --- | --- | --- |
-| `plan` | work arrives or resumes, "what's next?", no precedent fits, a bug isn't understood, or you ask for alternatives | the issue and the plan |
-| `build` | the approach is settled | code |
-| `review-diff` | a diff needs review, or review comments arrive | nothing, unless told |
-| `ship` | a pull request opens, updates, or merges | the pull request |
-
-Events load the principles (`delivery-principles`, `type-driven-development`, `testing-principles`, `writing-principles`, `design-engineering`); patterns apply them to a technology (`github`, `jj`, `effect-patterns`).
-
-| Word | Means |
-| --- | --- |
-| precedent | existing code you opened and copy; without one, a pull request needs a design |
-| budget | how many pull requests the work is worth, agreed before shaping it |
-| Decided · Assumed | what the user approved · what the agent chose alone |
-| ⚠️ Needs you | what waits on the user: the plan's alert and the `needs-you` label |
-
-| Artifact | Holds | Gone when |
-| --- | --- | --- |
-| Epic | what people can do once all its issues close | its last issue closes |
-| Issue | outcome, budget, Out of scope, product Decided | its last pull request merges; it keeps its decisions |
-| `plans/<name>.md` | the pull requests, the next Design, technical Decided | its last pull request deletes it, moving Decided into docs |
-| Pull request | why, Overview, Assumed, Read closely, Proof | merged |
-
 ## Skills
 
+Skills hold knowledge the model lacks: libraries, our principles for types, tests, design, and writing, and jj mechanics. How work ships lives in the Shipping section of `AGENTS.global.md`, not in a skill.
+
 ```text
-skills/<level>/<name>/SKILL.md   owned: written and edited here
-vendor/skills/<name>/SKILL.md    third-party: installed by the skills CLI, never edited; counts as a pattern
+skills/<name>/SKILL.md           owned: written and edited here
+vendor/skills/<name>/SKILL.md    third-party: installed by the skills CLI, never edited
 ```
 
-The level directory says what a skill is and which skills it may name: `events` · `principles` · `patterns` · `tools` (user-invoked) · `meta`. The `write-skill` skill defines each one.
+`agents-sync.fish` links every skill into each harness skills dir by name, so names must be unique. Skills refer to each other by name, never by relative path.
 
-Harnesses see one flat list: `agents-sync.fish` links every skill into each harness skills dir by name,
-so names must be unique across levels. Skills refer to each other by name, never by relative path.
-
-`ls skills/* vendor/skills` is the catalog. `agents-doctor.fish` fails when a skill sits outside a known level,
-a tool is model-invoked, a vendored skill lacks a lock entry, a skill names one its level may not,
-or a pattern names no principle or event.
+`ls skills vendor/skills` is the catalog. `agents-doctor.fish` fails on invalid frontmatter, a duplicate name, a vendored skill without a lock entry, a name that points at a missing skill, or a missing link.
 
 Attribution for skills adapted from other developers: [CREDITS.md](CREDITS.md).
 
@@ -83,7 +43,7 @@ Attribution for skills adapted from other developers: [CREDITS.md](CREDITS.md).
 | Mode | When | Where |
 | --- | --- | --- |
 | Adopt | use it unchanged | `vendor/`, installed and updated by the skills CLI |
-| Adapt | you want to change it | an owned level directory, plus a row in `CREDITS.md` |
+| Adapt | you want to change it | `skills/<name>`, plus a row in `CREDITS.md` |
 | Try | one-off use | `npx skills use <owner>/<repo>@<skill>`, nothing installed |
 
 `vendor/` is the [skills CLI](https://github.com/vercel-labs/skills)'s project: run it from there so it writes

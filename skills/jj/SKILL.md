@@ -5,7 +5,7 @@ description: Jujutsu (jj) mechanics. Use before any version-control command in a
 
 # jj
 
-Applies the `delivery-principles` skill with jj 0.45; run `jj help <command>` before using a flag not shown here.
+For jj 0.45; run `jj help <command>` before using a flag not shown here.
 
 In a repository with `.jj`, write only through jj. `git commit`, `checkout`, `switch`, `reset`, `rebase`, `stash`, and `push` bypass jj and leave its view stale.
 

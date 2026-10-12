@@ -5,7 +5,7 @@ description: Cache, search, and compare remote git repositories as reference cod
 
 # Repo Librarian
 
-Finds the precedent in reference repositories for the `plan` skill. A local library of remote repositories: partial clones at stable paths, refreshed by fast-forward only, with reusable notes.
+A local library of remote repositories: partial clones at stable paths, refreshed by fast-forward only, with reusable notes.
 
 ```text
 ~/.cache/checkouts/<host>/<org>/<repo>                 checkouts
@@ -15,7 +15,7 @@ Finds the precedent in reference repositories for the `plan` skill. A local libr
 
 ## Commands
 
-Run each as `bash ~/agents/skills/patterns/repo-librarian/scripts/<script>`. A repository is `owner/repo` (GitHub), `host/owner/repo`, or an HTTPS or SSH URL.
+Run each as `bash ~/agents/skills/repo-librarian/scripts/<script>`. A repository is `owner/repo` (GitHub), `host/owner/repo`, or an HTTPS or SSH URL.
 
 | Need | Script |
 | --- | --- |

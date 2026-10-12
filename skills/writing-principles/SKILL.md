@@ -71,4 +71,4 @@ Read each sentence alone, and delete it if the reader would act the same without
 | A sentence that fits any project unchanged | Delete |
 
 - **Why:** each slop line costs the reader attention and teaches them to skim.
-- **Check:** `bash ~/agents/skills/principles/writing-principles/scripts/slop.sh <files>` catches part of this table.
+- **Check:** `bash ~/agents/skills/writing-principles/scripts/slop.sh <files>` catches part of this table.

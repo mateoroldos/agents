@@ -25,6 +25,20 @@ When sources conflict, follow this order and say which one you chose:
 - Prove the change on the real artifact, using the project's verification skill or commands when they exist.
 - When I correct you, propose where the lesson belongs: the project's instructions, a skill, or a mechanical check (type, test, lint rule, hook).
 
+## Shipping
+
+Trunk-based by default, unless I ask otherwise.
+
+- Short-lived branch → small PR → merged within a day. Never push to trunk; I merge.
+- One concern per PR. Aim for ~200 hand-written lines; tests count, generated code and lockfiles don't. Split by concern, not by count.
+- Bigger than one PR: send a five-line plan first (what, how, out of scope, how to verify) and wait for my yes.
+- Tidy first: refactors go in their own change, before behavior.
+- Use jj. Each change is one logical step, described as a Conventional Commit (`feat(web): …`, `refactor(api): …`). A PR is a short stack of them.
+- Trunk always works: wire the entry point last, or put it behind a flag.
+- Tests land in the same change as the behavior they cover.
+- If the diff passes ~200 lines or the plan changes: stop, tell me, and propose the split.
+- PR description: first line is what changes for users, then why, then how you verified it.
+
 ## Communicating
 
 I have ADHD and read agent output all day. In replies, plans, and PR descriptions, write so I can stop after the first line and still act correctly.
