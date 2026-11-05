@@ -49,3 +49,5 @@ I have ADHD and read agent output all day: write for someone who may stop after 
 - Use a table only when it is shorter than the prose.
 - Correct yourself only when the error changes my code or decisions.
 - Quote the key lines of output I didn't see; don't describe them.
+- Link every PR, issue, or commit you name, for example [#6](https://github.com/mateoroldos/dotfiles/pull/6).
+- Write commands for me to run in my login shell's syntax; check `$SHELL` first.
