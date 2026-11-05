@@ -30,6 +30,8 @@ jj git push --named <bookmark>=<top-id> --dry-run
 jj git push --named <bookmark>=<top-id>
 ```
 
+For a single change, `jj git push -c <top-id>` pushes it under a generated `push-<change-id>` bookmark.
+
 For a bookmark that already exists, move it with `jj bookmark set <bookmark> -r <top-id>`, then `jj git push -b <bookmark>`.
 
 A rejected push, a conflicted bookmark, or an outgoing set that changed after the dry run stops the landing until you have inspected it.
@@ -53,3 +55,10 @@ jj log -r 'trunk()..@'      # must show only unmerged work
 ```
 
 If it still shows a merged change, stop and report. The next pull request starts again at step 1.
+
+If the merged branch survives on the remote, delete it:
+
+```sh
+jj bookmark delete <bookmark>
+jj git push --deleted
+```

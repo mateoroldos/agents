@@ -5,7 +5,7 @@ description: Jujutsu (jj) mechanics. Use before any version-control command in a
 
 # jj
 
-For jj 0.45; run `jj help <command>` before using a flag not shown here.
+For jj 0.47; run `jj help <command>` before using a flag not shown here.
 
 In a repository with `.jj`, write only through jj. `git commit`, `checkout`, `switch`, `reset`, `rebase`, `stash`, and `push` bypass jj and leave its view stale.
 
@@ -58,12 +58,9 @@ Ignored and untracked files are outside the operation log.
 
 ## Parallel writers
 
-Each concurrent writer gets its own workspace and its own change; two workspaces never rewrite the same change.
+The user creates and removes workspaces. Each concurrent writer works in its own workspace on its own change; two workspaces never rewrite the same change.
 
-```sh
-jj workspace add --name <writer> -r @ <path>
-jj workspace forget <writer>    # only after its changes are kept or abandoned
-```
+If jj reports a stale working copy, run `jj workspace update-stale`.
 
 ## Stop
 
