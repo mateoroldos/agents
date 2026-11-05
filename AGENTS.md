@@ -16,6 +16,7 @@ Source for my global agent instructions and skills. `agents-sync.fish` symlinks 
 
 - `AGENTS.global.md` affects every project at once. Show the proposed diff and wait for approval before writing it.
 - Keep `AGENTS.global.md` harness-neutral: no harness-specific syntax such as `@` imports, and no project or tool facts.
+- Add an instruction only if it changes what an agent would do by default. Practices I follow myself stay out.
 - A skill holds only what the model doesn't already know. Keep SKILL.md short and move detail to `references/`, one level deep.
 - Refer to other skills by name, never by relative path.
 - Never edit `vendor/`. Install and update it with the skills CLI from inside `vendor/`, as described in `README.md`.
